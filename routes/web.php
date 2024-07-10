@@ -1,11 +1,18 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::controller(ProjectController::class)->group(function(){
+    route::get('/', 'index')->name('home');
 });
+
+Route::resource('post', ProjectController::class)->except('show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
